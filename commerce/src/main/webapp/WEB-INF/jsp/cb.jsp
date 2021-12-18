@@ -4,28 +4,34 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
-    function getDetail(){
-        var jwt = '${jwt}';
+    window.onload = function(){
+        localStorage.tk = '${token}';
 
 
-        const headers = {
-            'X-AUTH-TOKEN': jwt,
-        }
+        $.ajax({
+            url: 'http://localhost:8080/user/detail',
+            type: 'POST',
+            headers: {"X-AUTH-TOKEN": '${token}'
+                },
+            success: function (data) {
+                alert("성공 : "+ JSON.stringify(data));
+            }
+        });
 
-        axios.post('http://localhost:8080/user/detail', {}, {headers})
-            .then(res => { // headers: {…} 로 들어감.
-                console.log('send ok', res.data)
-            })
+
     }
+
+
 </script>
 
 <head>
 </head>
 <body>
 <div>
-    <h2> 사용자 정보 불러오기  </h2>
-    <img src="/images/kakao_login_medium_wide.png" onclick="getDetail();"/>
+    <h2> 메인페이지 With JWT  </h2>
+    <h4> JWT : ${token} </h4>
 </div>
 
 

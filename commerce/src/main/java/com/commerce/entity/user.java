@@ -26,13 +26,25 @@ public class user implements UserDetails {
     private String id;
 
     @Column(length = 100 , unique = true)
-    private String kakao;
+    private String social;
+
+    @Column(length = 200)
+    private String name;
+
+    @Column(length = 200)
+    private String email;
+
+    @Column(length = 200)
+    private String age;
 
     @Column(length = 200)
     private String image;
 
     @Column(length = 200)
-    private String name;
+    private String connected;
+
+    @Column(length = 200)
+    private String regdate;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
@@ -50,11 +62,9 @@ public class user implements UserDetails {
         return null;
     }
 
-
-
     @Override
     public String getUsername() {
-        return kakao;
+        return social;
     }
 
     @Override

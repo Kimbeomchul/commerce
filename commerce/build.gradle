@@ -51,8 +51,8 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-oauth2-client")
     testCompile "org.springframework.boot:spring-boot-starter-test"
 
-//    // H2 DB 사용
-//    runtimeOnly 'com.h2database:h2'
+    // H2 DB 사용
+    runtimeOnly 'com.h2database:h2'
 
     // mysql 및 mybatis 사용 의존성.
     compile ('mysql:mysql-connector-java')

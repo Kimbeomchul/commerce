@@ -4,6 +4,7 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,7 +21,8 @@ import java.util.List;
 @Component
 public class JwtTokenProvider {
 
-    private String secretKey = "dcxteam";
+    @Value("${jwt.secret}")
+    private String secretKey;
 
     // 토큰 유효시간 30분
     private long tokenValidTime = 30 * 60 * 1000L;
@@ -34,10 +36,14 @@ public class JwtTokenProvider {
     }
 
     // JWT 토큰 생성
-    public String createToken(String userPk, String image, String name, List<String> roles) {
-        Claims claims = Jwts.claims().setSubject(userPk); // JWT payload 에 저장되는 정보단위
-        claims.put("image", image);
+    public String createToken(String social,  String name, String age, String email ,String image,String connected, String regdate, List<String> roles) {
+        Claims claims = Jwts.claims().setSubject(social); // JWT payload 에 저장되는 정보단위
         claims.put("name", name);
+        claims.put("age", age);
+        claims.put("email", email);
+        claims.put("image", image);
+        claims.put("connected", connected);
+        claims.put("regdate",regdate);
         claims.put("roles", roles); // 정보는 key / value 쌍으로 저장된다.
         Date now = new Date();
         return Jwts.builder()
