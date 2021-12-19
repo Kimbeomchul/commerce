@@ -3,14 +3,14 @@
 <meta charset="utf-8" />
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
-<script type="text/javascript">
-    <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-    <spring:eval expression="@environment.getProperty('kakao.js')" var="kakao_js"/>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
+<script type="text/javascript">
 
     function login(login_with){
         location.href = "http://localhost:8080/login?login_with="+login_with;
     }
+
 </script>
 
 <head>
@@ -21,19 +21,23 @@
 
 </head>
 <body>
+
 <div>
-    <h2> 네이버 Rest Api 로그인 </h2>
+    <h2> 네이버 로그인 </h2>
     <img src="/images/naverLogin.png" onclick="login('naver');"/>
 
 </div>
 <div>
-    <h2> 카카오 Rest Api 로그인 </h2>
+    <h2> 카카오 로그인 </h2>
     <img src="/images/kakaoLogin.png" onclick="login('kakao');"/>
 </div>
-
 <div>
-    <h2> 카카오 Javascript 로그인 </h2>
-    <img src="/images/kakao_login_medium_wide.png" onclick="jsLogin();"/>
+    <h2> 구글 로그인 </h2>
+    <img src="/images/googleLogin.png" onclick="login('google');"/>
+</div>
+<div>
+    <h2> 페이스북 로그인 </h2>
+    <img src="/images/facebookLogin.png" onclick="login('facebook');"/>
 </div>
 
 <div>

@@ -37,7 +37,7 @@ public class user implements UserDetails {
     @Column(length = 200)
     private String age;
 
-    @Column(length = 200)
+    @Column(length = 400)
     private String image;
 
     @Column(length = 200)
